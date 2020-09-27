@@ -16,14 +16,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    alphablending.cpp \
+    color.cpp \
+    geometry.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    paint.cpp \
+    pixel.cpp \
+    point.cpp
 
 HEADERS += \
-    mainwindow.h
+    alphablending.h \
+    color.h \
+    geometry.h \
+    mainwindow.h \
+    paint.h \
+    pixel.h \
+    point.h
 
 FORMS += \
-    mainwindow.ui
+    alphablending.ui \
+    mainwindow.ui \
+    paint.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
