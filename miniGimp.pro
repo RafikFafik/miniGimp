@@ -23,7 +23,8 @@ SOURCES += \
     mainwindow.cpp \
     paint.cpp \
     pixel.cpp \
-    point.cpp
+    point.cpp \
+    transformation2d.cpp
 
 HEADERS += \
     alphablending.h \
@@ -32,14 +33,19 @@ HEADERS += \
     mainwindow.h \
     paint.h \
     pixel.h \
-    point.h
+    point.h \
+    transformation2d.h
 
 FORMS += \
     alphablending.ui \
     mainwindow.ui \
-    paint.ui
+    paint.ui \
+    transformation2d.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    pictures.qrc

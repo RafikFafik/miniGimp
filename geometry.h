@@ -9,7 +9,7 @@ class Geometry
 {
 public:
     Geometry();
-    static void line(QImage *img, Point start, Point end, Color color);
+    static void line(QImage *img, Point start, Point end, Color *color);
 };
 
 #endif // GEOMETRY_H

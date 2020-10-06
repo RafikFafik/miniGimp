@@ -35,14 +35,15 @@ void Paint::mouseMoveEvent(QMouseEvent *event)
     move.setPoint(event->x(), event->y());
     if(!(insideFrame(ui->frame, move)&&(insideFrame(ui->frame, press))))
         return;
-    Color c(255, 255, 255);
-    Pixel::setPixelColor(img, move, c);
+    Color *color = new Color();
+    color->red = 0;
+    color->green = 0;
+    color->blue = 0;
+    Pixel::setPixelColor(img, move, color);
+    delete color;
     draw();
 }
-void Paint::mouseReleaseEvent(QMouseEvent *event)
-{
 
-}
 bool Paint::insideFrame(QFrame *frame, Point point)
 {
     int x = point.getX();
@@ -61,9 +62,10 @@ void Paint::on_clear_clicked()
 }
 void Paint::draw()
 {
-
-    Geometry::line(img, press, move, Color(255, 255, 255));
+    Color *color = new Color(255, 255, 255);
+    Geometry::line(img, press, move, color);
     update();
+    delete color;
 }
 
 void Paint::on_pen_clicked()
@@ -83,8 +85,4 @@ void Paint::on_undo_clicked()
     *img = imgs.back();
     imgs.pop_back();
     update();
-}
-void Paint::setDrawingColor()
-{
-    QColor qColor = QColorDialog::getColor();
 }

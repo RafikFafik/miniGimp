@@ -22,7 +22,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>100</width>
+      <width>120</width>
       <height>25</height>
      </rect>
     </property>
@@ -46,14 +46,27 @@
    <widget class="QPushButton" name="alpha_blending">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>120</x>
       <y>0</y>
-      <width>100</width>
+      <width>120</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
      <string>Alpha Blending</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="transformation2d">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>0</y>
+      <width>120</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Transformation 2D</string>
     </property>
    </widget>
   </widget>

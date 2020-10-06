@@ -9,7 +9,8 @@ class Pixel
 {
 
 public:
-    static void setPixelColor(QImage *img, Point point, Color color);
+    static void setPixelColor(QImage *img, Point point, Color *color);
+    static Color getPixelColor(QImage *img, Point point);
     static void clear(QImage *img);
-    static void fill(QImage *img, Color color);
+    static void fill(QImage *img, Color *color);
 };

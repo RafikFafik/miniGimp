@@ -38,8 +38,8 @@ private slots:
     void paintEvent(QPaintEvent*);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void setDrawingColor();
+//    void mouseReleaseEvent(QMouseEvent *event);
+//    void setDrawingColor();
     void draw();
     void on_clear_clicked();
     void on_pen_clicked();

@@ -4,7 +4,7 @@ Geometry::Geometry()
 {
 
 }
-void Geometry::line(QImage *img, Point start, Point end, Color color)
+void Geometry::line(QImage *img, Point start, Point end, Color *color)
 {
     if(end.getX()-start.getX() == 0){
        return;

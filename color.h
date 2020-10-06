@@ -2,21 +2,18 @@
 #define COLOR_H
 
 
-class Color
-{
-public:
-    Color(unsigned r, unsigned g, unsigned b);
-    Color();
-    unsigned char getRed();
-    unsigned char getGreen();
-    unsigned char getBlue();
-    unsigned char getRGB();
-    void setRed(unsigned char r);
-    void setGreen(unsigned char g);
-    void setBlue(unsigned char b);
-    void setRGB(unsigned char r, unsigned char g, unsigned char b);
-private:
+struct Color {
     unsigned char red, green, blue;
+    Color(){
+        red = 0;
+        green = 0;
+        blue = 0;
+    }
+    Color(unsigned char _red, unsigned char _green, unsigned char _blue){
+        red = _red;
+        green = _green;
+        blue = _blue;
+    }
 };
 
 #endif // COLOR_H
