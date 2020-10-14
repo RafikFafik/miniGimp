@@ -69,6 +69,19 @@
      <string>Transformation 2D</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="texturing">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>0</y>
+      <width>120</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Texturing</string>
+    </property>
+   </widget>
   </widget>
   <action name="actionexit">
    <property name="text">

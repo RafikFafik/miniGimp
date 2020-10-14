@@ -21,6 +21,7 @@ SOURCES += \
     geometry.cpp \
     main.cpp \
     mainwindow.cpp \
+    matrix.cpp \
     paint.cpp \
     pixel.cpp \
     point.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     color.h \
     geometry.h \
     mainwindow.h \
+    matrix.h \
     paint.h \
     pixel.h \
     point.h \

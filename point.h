@@ -1,18 +1,11 @@
 #ifndef POINT_H
 #define POINT_H
 
-class Point{
-
-    public:
+struct Point{
     int x, y;
-public:
-    Point();
-    Point(int xpos, int ypos);
-    int getX();
-    int getY();
-    void setX(int xpos);
-    void setY(int ypos);
-    void setPoint(int xpos, int ypos);
+};
+struct PointD{
+    int x, y;
 };
 
 #endif // POINT_H

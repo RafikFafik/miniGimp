@@ -30,15 +30,15 @@ private:
     Ui::Paint *ui;
     QImage *img, *color_preview;
     std::vector<QImage> imgs;
-    Point press, move, release;
-    bool insideFrame(QFrame *frame, Point point);
+    Point *press, *move, *release;
+    bool insideFrame(QFrame *frame, Point *point);
     unsigned int mode = 0;
 
 private slots:
     void paintEvent(QPaintEvent*);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
-//    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 //    void setDrawingColor();
     void draw();
     void on_clear_clicked();

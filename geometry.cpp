@@ -4,30 +4,39 @@ Geometry::Geometry()
 {
 
 }
-void Geometry::line(QImage *img, Point start, Point end, Color *color)
+void Geometry::line(QImage *img, Point *start, Point *end, Color *color)
 {
-    if(end.getX()-start.getX() == 0){
+    if(end->x-start->x == 0){
        return;
      }
-    double m = (end.getY()-start.getY())/(double)(end.getX()-start.getX());
+    double m = (end->y-start->y)/(double)(end->x-start->x);
     if(abs(m) < 1) {
-        if(start.getX() > end.getX())
+        if(start->x > end->x)
             std::swap(start, end);
-        for(int x = start.getX(); x <= end.getX(); x++)
+        Point *p = new Point();
+        for(int x = start->x; x <= end->x; x++)
         {
-            double y = m * (x - start.getX()) + start.getY();
-            Pixel::setPixelColor(img, Point(x, (int)floor(y+0.5)), color);
+            double y = m * (x - start->x) + start->y;
+            p->x = x;
+            p->y = (int)floor(y+0.5);
+            Pixel::setPixelColor(img, p, color);
+
         }
+        delete p;
     }
     else {
-        if(start.getY() > end.getY())
+        if(start->y > end->y)
             std::swap(start, end);
-        double m = (end.getX()-start.getX())/(double)(end.getY()-start.getY());
-        for(int y = start.getY(); y <= end.getY(); y++)
+        Point *p = new Point();
+        double m = (end->x-start->x)/(double)(end->y-start->y);
+        for(int y = start->y; y <= end->y; y++)
         {
-            double x = m * (y - start.getY()) + start.getX();
-            Pixel::setPixelColor(img, Point((int)floor(x+0.5), y), color);
+            double x = m * (y - start->y) + start->x;
+            p->x = x;
+            p->y = y;
+            Pixel::setPixelColor(img, p, color);
         }
+        delete p;
     }
 
 }

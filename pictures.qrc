@@ -4,5 +4,7 @@
         <file>pictures/lake.jpg</file>
         <file>pictures/meadow.jpg</file>
         <file>pictures/space.jpg</file>
+        <file>pictures/earth.jpg</file>
+        <file>pictures/ursus.jpg</file>
     </qresource>
 </RCC>

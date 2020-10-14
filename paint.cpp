@@ -24,15 +24,19 @@ void Paint::paintEvent(QPaintEvent*)
 }
 void Paint::mousePressEvent(QMouseEvent *event)
 {
+    press = new Point;
+    move = new Point;
     imgs.push_back(img->copy());
-    press.setPoint(event->x(), event->y());
+    press->x = event->x();
+    press->y = event->y();
     if(!insideFrame(ui->frame, press))
         return;
 }
 void Paint::mouseMoveEvent(QMouseEvent *event)
 {
     *img = imgs.back();
-    move.setPoint(event->x(), event->y());
+    move->x = event->x();
+    move->y =  event->y();
     if(!(insideFrame(ui->frame, move)&&(insideFrame(ui->frame, press))))
         return;
     Color *color = new Color();
@@ -43,14 +47,17 @@ void Paint::mouseMoveEvent(QMouseEvent *event)
     delete color;
     draw();
 }
-
-bool Paint::insideFrame(QFrame *frame, Point point)
+void Paint::mouseReleaseEvent(QMouseEvent*)
 {
-    int x = point.getX();
-    int y = point.getY();
+    delete press;
+    delete move;
+}
+
+bool Paint::insideFrame(QFrame *frame, Point *point)
+{
     int width = frame->width();
     int height = frame->height();
-    if(x > width || y > height || x < frame->x() || y < frame->y())
+    if(point->x > width || point->y > height || point->x < frame->x() || point->y < frame->y())
         return  false;
     return true;
 }
