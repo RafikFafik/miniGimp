@@ -17,4 +17,8 @@ public:
     static Color *interpolate(unsigned char *img, int width, double x, double y, Color *output);
     static bool pointClicked(Point *point, std::vector<Point> &points);
     static int getPointIndex(std::vector<Point> points, Point *point);
+    static int getTop(std::vector<Point> &points);
+    static int getBottom(std::vector<Point> &points);
+    static int getLeft(std::vector<Point> &points);
+    static int getRight(std::vector<Point> &points);
 };

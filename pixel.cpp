@@ -85,3 +85,35 @@ int Pixel::getPointIndex(std::vector<Point> points, Point *point) {
     }
     return -1;
 }
+int Pixel::getTop(std::vector<Point> &points) {
+    int value = points.at(0).y;
+    for(std::vector<Point>::iterator it = points.begin() + 1; it != points.end(); it++) {
+        if(it->y < value)
+            value = it->y;
+    }
+    return value;
+}
+int Pixel::getBottom(std::vector<Point> &points) {
+    int value = points.at(0).y;
+    for(std::vector<Point>::iterator it = points.begin() + 1; it != points.end(); it++) {
+        if(it->y > value)
+            value = it->y;
+    }
+    return value;
+}
+int Pixel::getLeft(std::vector<Point> &points) {
+    int value = points.at(0).x;
+    for(std::vector<Point>::iterator it = points.begin() + 1; it != points.end(); it++) {
+        if(it->x < value)
+            value = it->x;
+    }
+    return value;
+}
+int Pixel::getRight(std::vector<Point> &points) {
+    int value = points.at(0).x;
+    for(std::vector<Point>::iterator it = points.begin() + 1; it != points.end(); it++) {
+        if(it->x > value)
+            value = it->x;
+    }
+    return value;
+}

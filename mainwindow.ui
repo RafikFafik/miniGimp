@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1050</width>
     <height>700</height>
    </rect>
   </property>
@@ -35,8 +35,8 @@
      <rect>
       <x>50</x>
       <y>50</y>
-      <width>950</width>
-      <height>500</height>
+      <width>1050</width>
+      <height>550</height>
      </rect>
     </property>
     <property name="autoFillBackground">
