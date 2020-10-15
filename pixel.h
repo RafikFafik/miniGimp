@@ -13,5 +13,8 @@ public:
     static Color getPixelColor(QImage *img, Point *point);
     static void clear(QImage *img);
     static void fill(QImage *img, Color *color);
+    static void drawPoint(unsigned char *ptr, Point *point, int width, Color *color);
     static Color *interpolate(unsigned char *img, int width, double x, double y, Color *output);
+    static bool pointClicked(Point *point, std::vector<Point> &points);
+    static int getPointIndex(std::vector<Point> points, Point *point);
 };

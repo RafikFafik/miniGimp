@@ -60,3 +60,28 @@ Color *Pixel::interpolate(unsigned char *img, int width, double x, double y, Col
                  (1 - b) * ((1 - a) * img[width * 4 * left_up_y + (4 * left_up_x) + 2] + a * img[width * 4 * left_up_y + (4 * (left_up_x + 1)) + 2]);
     return output;
 }
+void Pixel::drawPoint(unsigned char *ptr, Point *point, int width, Color *color) {
+    for(int i =  point->y -6; i <  point->y + 6; i++) {
+        for(int j = point->x - 6; j < point->x + 6; j++) {
+            ptr[width * 4 * i + 4 * j + 2] = color->red;
+            ptr[width * 4 * i + 4 * j + 1] = color->green;
+            ptr[width * 4 * i + 4 * j] = color->blue;
+        }
+    }
+}
+bool Pixel::pointClicked(Point *point, std::vector<Point> &points) {
+    if(points.empty())
+        return false;
+    for(std::vector<Point>::iterator it = points.begin(); it != points.end(); it++) {
+        if(point->x >= it->x - 6 && point->x < it->x + 6 && point->y >= it->y - 6 && point->y < it->y + 6)
+            return true;
+    }
+    return false;
+}
+int Pixel::getPointIndex(std::vector<Point> points, Point *point) {
+    for(std::vector<Point>::iterator it = points.begin(); it != points.end(); it++) {
+        if(point->x >= it->x - 6 && point->x < it->x + 6 && point->y >= it->y - 6 && point->y < it->y + 6)
+            return it - points.begin();
+    }
+    return -1;
+}

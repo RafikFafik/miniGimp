@@ -4,8 +4,5 @@
 struct Point{
     int x, y;
 };
-struct PointD{
-    int x, y;
-};
 
 #endif // POINT_H

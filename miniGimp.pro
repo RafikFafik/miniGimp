@@ -25,6 +25,7 @@ SOURCES += \
     paint.cpp \
     pixel.cpp \
     point.cpp \
+    texture.cpp \
     transformation2d.cpp
 
 HEADERS += \
@@ -36,12 +37,14 @@ HEADERS += \
     paint.h \
     pixel.h \
     point.h \
+    texture.h \
     transformation2d.h
 
 FORMS += \
     alphablending.ui \
     mainwindow.ui \
     paint.ui \
+    texture.ui \
     transformation2d.ui
 
 # Default rules for deployment.

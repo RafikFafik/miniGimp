@@ -7,13 +7,14 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    resize(QDesktopWidget().availableGeometry(this).size() * 0.6);
     paint = new Paint(ui->container);
     alphaBlending = new AlphaBlending(ui->container);
     transformation2D = new Transformation2D(ui->container);
-    texure = new Texture(ui->container);
+    texture = new Texture(ui->container);
     paint->hide();
     alphaBlending->hide();
-//    transformation2D->hide();
+    transformation2D->hide();
 }
 
 MainWindow::~MainWindow()
@@ -25,6 +26,7 @@ void MainWindow::on_alpha_blending_clicked()
     paint->hide();
     transformation2D->hide();
     alphaBlending->show();
+    texture->hide();
 }
 
 void MainWindow::on_paint_clicked()
@@ -32,6 +34,7 @@ void MainWindow::on_paint_clicked()
     paint->show();
     transformation2D->hide();
     alphaBlending->hide();
+    texture->hide();
 }
 
 void MainWindow::on_transformation2d_clicked()
@@ -39,6 +42,7 @@ void MainWindow::on_transformation2d_clicked()
     transformation2D->show();
     alphaBlending->hide();
     paint->hide();
+    texture->hide();
 }
 
 void MainWindow::on_texturing_clicked()
@@ -46,5 +50,5 @@ void MainWindow::on_texturing_clicked()
     transformation2D->hide();
     alphaBlending->hide();
     paint->hide();
-    texture()->show();
+    texture->show();
 }
