@@ -31,11 +31,11 @@ void Texture::mousePressEvent(QMouseEvent *event)
     point->x = event->x();
     point->y = event->y();
 
-    if(inFrameClicked(point, ui->frame_left)) {
+    if(Pixel::inFrameClicked(point, ui->frame_left)) {
         *img_left = img_left_restore->copy();
         frameAction(img_left, ui->frame_left, points_left, point, color);
     }
-    if(inFrameClicked(point, ui->frame_right)) {
+    if(Pixel::inFrameClicked(point, ui->frame_right)) {
         frameAction(img_right, ui->frame_right, points_right, point, color);
     }
     texture();
@@ -46,11 +46,11 @@ void Texture::mouseMoveEvent(QMouseEvent *event)
 
     point->x = event->x();
     point->y = event->y();
-    if(inFrameClicked(point, ui->frame_left)) {
+    if(Pixel::inFrameClicked(point, ui->frame_left)) {
         *img_left = img_left_restore->copy();
         frameAction(img_left, ui->frame_left, points_left, point, color);
     }
-    if(inFrameClicked(point, ui->frame_right)) {
+    if(Pixel::inFrameClicked(point, ui->frame_right)) {
         Pixel::clear(img_right);
         frameAction(img_right, ui->frame_right, points_right, point, color);
     }
@@ -66,21 +66,16 @@ void Texture::mouseReleaseEvent(QMouseEvent *event)
     color->blue = 60;
     color->green = 255;
 
-    if(inFrameClicked(point, ui->frame_left)) {
+    if(Pixel::inFrameClicked(point, ui->frame_left)) {
         renderTriangle(img_left, ui->frame_left, points_left, color, -1);
     }
-    if(inFrameClicked(point, ui->frame_right)) {
+    if(Pixel::inFrameClicked(point, ui->frame_right)) {
         renderTriangle(img_right, ui->frame_right, points_right, color, -1);
     }
     update();
     delete color;
     delete point;
 
-}
-bool Texture::inFrameClicked(Point *point, QFrame *frame) {
-    if(point->x >= frame->x() && point->x < frame->x() + frame->width() && point->y >= frame->y() && point->y < frame->y() + frame->width())
-           return true;
-    return false;
 }
 void Texture::frameAction(QImage *img, QFrame *frame, std::vector<Point> &points,  Point *point, Color *color) {
     int point_index = -1;

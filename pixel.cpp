@@ -117,3 +117,8 @@ int Pixel::getRight(std::vector<Point> &points) {
     }
     return value;
 }
+bool Pixel::inFrameClicked(Point *point, QFrame *frame) {
+    if(point->x >= frame->x() && point->x < frame->x() + frame->width() && point->y >= frame->y() && point->y < frame->y() + frame->width())
+           return true;
+    return false;
+}

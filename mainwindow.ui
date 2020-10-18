@@ -36,7 +36,7 @@
       <x>50</x>
       <y>50</y>
       <width>1050</width>
-      <height>550</height>
+      <height>600</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -80,6 +80,19 @@
     </property>
     <property name="text">
      <string>Texturing</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="morphing">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>0</y>
+      <width>120</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Morphing</string>
     </property>
    </widget>
   </widget>

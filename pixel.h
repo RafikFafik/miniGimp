@@ -21,4 +21,5 @@ public:
     static int getBottom(std::vector<Point> &points);
     static int getLeft(std::vector<Point> &points);
     static int getRight(std::vector<Point> &points);
+    static bool inFrameClicked(Point *point, QFrame *frame);
 };
