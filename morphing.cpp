@@ -11,7 +11,6 @@ Morphing::Morphing(QWidget *parent) :
     img = new QImage(":/pictures/ciapek.jpg");
     animation = new QImage(ui->frame_right->width(), ui->frame_right->height(), QImage::Format_RGB32);
     Pixel::clear(animation);
-    keyframes.resize(ui->animation->maximum());
     update();
 }
 
@@ -41,9 +40,9 @@ void Morphing::mousePressEvent(QMouseEvent *event)
             *img = keyframe_begin->copy();
             frameAction(img, ui->frame_left, points_begin, point, color);
         }
-    }
-    morphing();
-    update();
+        morphing();
+        update();
+    }  
 }
 void Morphing::mouseMoveEvent(QMouseEvent *event)
 {
@@ -57,9 +56,9 @@ void Morphing::mouseMoveEvent(QMouseEvent *event)
             *img = keyframe_begin->copy();
             frameAction(img, ui->frame_left, points_begin, point, color);
         }
+        morphing();
+        update();
     }
-    morphing();
-    update();
 }
 void Morphing::mouseReleaseEvent(QMouseEvent *event)
 {
@@ -73,11 +72,10 @@ void Morphing::mouseReleaseEvent(QMouseEvent *event)
             *img = keyframe_begin->copy();
             renderTriangle(img, ui->frame_left, points_begin, color, -1);
         }
+        update();
+        delete color;
+        delete point;
     }
-    update();
-    delete color;
-    delete point;
-
 }
 
 void Morphing::frameAction(QImage *img, QFrame *frame, std::vector<Point> &points,  Point *point, Color *color) {
@@ -256,7 +254,7 @@ void Morphing::on_frames_count_valueChanged(int value)
 void Morphing::play(){
     int frames_count = ui->animation->maximum();
     QTimer  *t= new QTimer(this);
-    t->setInterval(frames_count / 50);
+    t->setInterval(frames_count / 500);
     int i = 0;
     connect(t, &QTimer::timeout, [=]() mutable{
         morphing();
@@ -275,4 +273,18 @@ void Morphing::play(){
 void Morphing::on_play_clicked()
 {
     play();
+}
+
+void Morphing::on_reset_clicked()
+{
+    if(ui->keyframe->value()) {
+        *img = keyframe_end->copy();
+    } else {
+        *img = keyframe_begin->copy();
+    }
+    points_end.clear();
+    points_begin.clear();
+    Pixel::clear(animation);
+    ui->animation->setValue(0);
+    update();
 }

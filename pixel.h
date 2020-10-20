@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QImage>
+#include <QFrame>
 #include "point.h"
 #include "color.h"
 #include "paint.h"
@@ -22,4 +23,6 @@ public:
     static int getLeft(std::vector<Point> &points);
     static int getRight(std::vector<Point> &points);
     static bool inFrameClicked(Point *point, QFrame *frame);
+private:
+    static bool outOfImage(Point *point, int width, int height);
 };

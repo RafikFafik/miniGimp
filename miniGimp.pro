@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     alphablending.cpp \
     color.cpp \
+    cube.cpp \
     geometry.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -27,11 +28,13 @@ SOURCES += \
     pixel.cpp \
     point.cpp \
     texture.cpp \
-    transformation2d.cpp
+    transformation2d.cpp \
+    transformation3d.cpp
 
 HEADERS += \
     alphablending.h \
     color.h \
+    cube.h \
     geometry.h \
     mainwindow.h \
     matrix.h \
@@ -40,7 +43,8 @@ HEADERS += \
     pixel.h \
     point.h \
     texture.h \
-    transformation2d.h
+    transformation2d.h \
+    transformation3d.h
 
 FORMS += \
     alphablending.ui \
@@ -48,7 +52,8 @@ FORMS += \
     morphing.ui \
     paint.ui \
     texture.ui \
-    transformation2d.ui
+    transformation2d.ui \
+    transformation3d.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

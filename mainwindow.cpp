@@ -13,10 +13,12 @@ MainWindow::MainWindow(QWidget *parent)
     transformation2D = new Transformation2D(ui->container);
     texture = new Texture(ui->container);
     morphing = new Morphing(ui->container);
+    transformation3D = new Transformation3D(ui->container);
     paint->hide();
     alphaBlending->hide();
     transformation2D->hide();
     texture->hide();
+    morphing->hide();
 }
 
 MainWindow::~MainWindow()
@@ -30,6 +32,7 @@ void MainWindow::on_alpha_blending_clicked()
     alphaBlending->show();
     texture->hide();
     morphing->hide();
+    transformation3D->hide();
 }
 
 void MainWindow::on_paint_clicked()
@@ -39,6 +42,7 @@ void MainWindow::on_paint_clicked()
     alphaBlending->hide();
     texture->hide();
     morphing->hide();
+    transformation3D->hide();
 }
 
 void MainWindow::on_transformation2d_clicked()
@@ -48,6 +52,7 @@ void MainWindow::on_transformation2d_clicked()
     paint->hide();
     texture->hide();
     morphing->hide();
+    transformation3D->hide();
 }
 
 void MainWindow::on_texturing_clicked()
@@ -57,6 +62,7 @@ void MainWindow::on_texturing_clicked()
     paint->hide();
     texture->show();
     morphing->hide();
+    transformation3D->hide();
 }
 void MainWindow::on_morphing_clicked()
 {
@@ -65,4 +71,15 @@ void MainWindow::on_morphing_clicked()
     paint->hide();
     texture->hide();
     morphing->show();
+    transformation3D->hide();
+}
+
+void MainWindow::on_transformation3d_clicked()
+{
+    transformation2D->hide();
+    alphaBlending->hide();
+    paint->hide();
+    texture->hide();
+    morphing->hide();
+    transformation3D->show();
 }

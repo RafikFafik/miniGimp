@@ -13,9 +13,11 @@ void Pixel::setPixelColor(QImage *img, Point *point, Color *color)
 {
     uchar *pointer = img->bits();
     int width = img->width();
+    int height = img->height();
     int x = point->x;
     int y = point->y;
-
+    if(Pixel::outOfImage(point, width, height))
+        return;
     pointer[width * 4 * y + 4 * x + 2] = color->blue;
     pointer[width * 4 * y + 4 * x + 1] = color->green;
     pointer[width * 4 * y + 4 * x] = color->red;
@@ -61,13 +63,20 @@ Color *Pixel::interpolate(unsigned char *img, int width, double x, double y, Col
     return output;
 }
 void Pixel::drawPoint(unsigned char *ptr, Point *point, int width, Color *color) {
+    Point *current = new Point;
     for(int i =  point->y -6; i <  point->y + 6; i++) {
         for(int j = point->x - 6; j < point->x + 6; j++) {
+            // no support for non square QImage
+            current->x = j;
+            current->y = i;
+            if(Pixel::outOfImage(current, width, width))
+                continue;
             ptr[width * 4 * i + 4 * j + 2] = color->red;
             ptr[width * 4 * i + 4 * j + 1] = color->green;
             ptr[width * 4 * i + 4 * j] = color->blue;
         }
     }
+    delete current;
 }
 bool Pixel::pointClicked(Point *point, std::vector<Point> &points) {
     if(points.empty())
@@ -118,7 +127,13 @@ int Pixel::getRight(std::vector<Point> &points) {
     return value;
 }
 bool Pixel::inFrameClicked(Point *point, QFrame *frame) {
-    if(point->x >= frame->x() && point->x < frame->x() + frame->width() && point->y >= frame->y() && point->y < frame->y() + frame->width())
+    if(point->x >= frame->x() && point->x < frame->x() + frame->width() && point->y >= frame->y() && point->y < frame->y() + frame->height())
+           return true;
+    return false;
+}
+bool Pixel::outOfImage(Point *point, int width, int height) {
+    // no support for frame located with offset from widget in point (0, 0)
+    if(point->x >= width || point->x < 0 || point->y >= height || point->y < 0)
            return true;
     return false;
 }

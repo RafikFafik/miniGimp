@@ -7,7 +7,15 @@ Geometry::Geometry()
 void Geometry::line(QImage *img, Point *start, Point *end, Color *color)
 {
     if(end->x-start->x == 0){
-       return;
+        Point *p = new Point();
+        if(start->y < end->y) {
+            for(int i = start->y; i < end->y; i++)
+                Pixel::setPixelColor(img, p, color);
+        } else {
+            for(int i = end->y; i < start->y; i++)
+                Pixel::setPixelColor(img, p, color);
+        }
+       delete p;
      }
     double m = (end->y-start->y)/(double)(end->x-start->x);
     if(abs(m) < 1) {

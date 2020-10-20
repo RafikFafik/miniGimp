@@ -5,6 +5,10 @@
 #include "pixel.h"
 #include "matrix.h"
 
+#define X 0
+#define Y 1
+#define Z 2
+
 namespace Ui {
 class Transformation2D;
 }

@@ -30,7 +30,6 @@ private:
     Ui::Morphing *ui;
     QImage *keyframe_begin, *keyframe_end, *img, *animation;
     std::vector<Point> points_begin, points_end;
-    std::vector<Triangle> keyframes;
     void frameAction(QImage *img, QFrame *frame, std::vector<Point> &points, Point *point, Color *color);
     void renderTriangle(QImage *img, QFrame *frame, std::vector<Point> &points, Color *color, int point_index);
     Point *point;
@@ -53,6 +52,7 @@ private slots:
     void on_animation_valueChanged();
     void on_frames_count_valueChanged(int value);
     void on_play_clicked();
+    void on_reset_clicked();
 };
 
 #endif // MORPHING_H

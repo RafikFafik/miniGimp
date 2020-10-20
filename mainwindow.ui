@@ -95,6 +95,19 @@
      <string>Morphing</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="transformation3d">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>0</y>
+      <width>120</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Transformation 3D</string>
+    </property>
+   </widget>
   </widget>
   <action name="actionexit">
    <property name="text">

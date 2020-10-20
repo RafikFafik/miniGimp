@@ -38,9 +38,9 @@ void Transformation2D::transform() {
         for(int j = 0; j < width; j++) {
 //            output[0] = matrix.transformationMatrix[0][0] * j + matrix.transformationMatrix[0][1] * i + matrix.transformationMatrix[0][2];
 //            output[1] = matrix.transformationMatrix[1][0] * j + matrix.transformationMatrix[1][1] * i + matrix.transformationMatrix[1][2];
-            input[0] = j;
-            input[1] = i;
-            input[2] = 1;
+            input[X] = j;
+            input[Y] = i;
+            input[Z] = 1;
             output = matrix.multiply(input, output);
 
             if(output[0] < 0 || output[0] >= width || output[1] < 0 || output[1] >= height) {
@@ -101,7 +101,14 @@ void Transformation2D::on_scaleY_valueChanged(int value)
 void Transformation2D::on_rotate_valueChanged(int value)
 {
     double angle = -(M_PI * (value - 180)/(double)180);
-    matrix.rotate(angle, ui->frame->width(), ui->frame->height());
+    int *center = new int[3];
+    int width = ui->frame->width();
+    int height = ui->frame->height();
+    center[X] = (width / (double)2)*(1-cos(angle))+(height/(double)2)*(sin(angle));
+    center[Y] = (height /(double)2)*(1-cos(angle))-(width/(double)2)*(sin(angle));
+    center[Z] = 1;
+    matrix.rotateZ(angle, center);
+    delete[] center;
     transform();
 }
 

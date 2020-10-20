@@ -4,8 +4,8 @@
 struct Point{
     int x, y;
 };
-struct Triangle {
-    Point A, B, C;
+struct Point3D {
+    int x, y, z;
 };
 
 #endif // POINT_H
