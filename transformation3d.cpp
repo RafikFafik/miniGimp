@@ -17,6 +17,7 @@ Transformation3D::Transformation3D(QWidget *parent) :
     point->y = 0;
     point->z = 0;
     cube.draw(img);
+    ui->draw_points->hide();
 }
 
 Transformation3D::~Transformation3D()
@@ -66,13 +67,6 @@ void Transformation3D::on_fov_valueChanged(int value)
     update();
 }
 
-void Transformation3D::on_checkBox_clicked()
-{
-    cube.setCornersVisible();
-    cube.draw(img);
-    update();
-}
-
 void Transformation3D::on_volume_valueChanged(int volume)
 {
     cube.setup(center, volume, 500);
@@ -82,9 +76,9 @@ void Transformation3D::on_volume_valueChanged(int volume)
 
 void Transformation3D::on_scaleX_valueChanged(int value)
 {
-    double y = 100 / (double)ui->scaleY->value();
-    double x = 100 / (double)value;
-    double z = 100 / (double)ui->scaleZ->value();
+    double y = (double)ui->scaleY->value() / 100;
+    double x = (double)value / 100;
+    double z = (double)ui->scaleZ->value() / 100;
     cube.scale(x, y, z);
     cube.draw(img);
     update();
@@ -92,9 +86,9 @@ void Transformation3D::on_scaleX_valueChanged(int value)
 
 void Transformation3D::on_scaleY_valueChanged(int value)
 {
-    double y = 100 / (double)value;
-    double x = 100 / (double)ui->scaleX->value();
-    double z = 100 / (double)ui->scaleZ->value();
+    double y = (double)value / 100;
+    double x = (double)ui->scaleX->value() / 100;
+    double z = (double)ui->scaleZ->value() / 100;
     cube.scale(x, y, z);
     cube.draw(img);
     update();
@@ -102,9 +96,9 @@ void Transformation3D::on_scaleY_valueChanged(int value)
 
 void Transformation3D::on_scaleZ_valueChanged(int value)
 {
-    double y = 100 / (double)ui->scaleY->value();
-    double x = 100 / (double)ui->scaleX->value();
-    double z = 100 / (double)value;
+    double y = (double)ui->scaleY->value() / 100;
+    double x = (double)ui->scaleX->value() / 100;
+    double z = (double)value / 100;
     cube.scale(x, y, z);
     cube.draw(img);
     update();
@@ -112,21 +106,64 @@ void Transformation3D::on_scaleZ_valueChanged(int value)
 
 void Transformation3D::on_rotateX_valueChanged(int value)
 {
-    double xAxis = -(M_PI * (value - 180)/(double)180);
-    double yAxis = -(M_PI * (ui->rotateY->value() - 180)/(double)180);
-    double zAxis = -(M_PI * (ui->rotateZ->value() - 180)/(double)180);
-//    cube.rotate(xAxis, yAxis, zAxis);
+    double angle = value / 180.0 * M_PI;
+    cube.rotateX(angle);
+    cube.draw(img);
+    update();
 }
 
 void Transformation3D::on_rotateY_valueChanged(int value)
 {
-
+    double angle = value / 180.0 * M_PI;
+    cube.rotateY(angle);
+    cube.draw(img);
+    update();
 }
 
 void Transformation3D::on_rotateZ_valueChanged(int value)
 {
     double angle = value / 180.0 * M_PI;
     cube.rotateZ(angle);
+    cube.draw(img);
+    update();
+}
+
+void Transformation3D::on_reset_clicked()
+{
+    ui->translateX->setValue(0);
+    ui->translateY->setValue(0);
+    ui->translateZ->setValue(0);
+    ui->scaleX->setValue(100);
+    ui->scaleY->setValue(100);
+    ui->scaleZ->setValue(100);
+    ui->rotateX->setValue(180);
+    ui->rotateY->setValue(180);
+    ui->rotateZ->setValue(180);
+    cube.reset();
+    cube.draw(img);
+    update();
+}
+
+void Transformation3D::on_wireframe_clicked()
+{
+    cube.toggleWireframe();
+    ui->flip_normal->hide();
+    ui->wireframe->isChecked() ? ui->flip_normal->hide() : ui->flip_normal->show();
+    ui->wireframe->isChecked() ? ui->draw_points->show() : ui->draw_points->hide();
+    cube.draw(img);
+    update();
+}
+
+void Transformation3D::on_flip_normal_clicked()
+{
+    cube.toggleNormals();
+    cube.draw(img);
+    update();
+}
+
+void Transformation3D::on_draw_points_clicked()
+{
+    cube.setCornersVisible();
     cube.draw(img);
     update();
 }

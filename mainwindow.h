@@ -10,6 +10,8 @@
 #include "texture.h"
 #include "morphing.h"
 #include "transformation3d.h"
+#include "scanline.h"
+#include "morphology.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +33,8 @@ private:
     Texture *texture;
     Morphing *morphing;
     Transformation3D *transformation3D;
+    ScanLine *scanLine;
+    Morphology *morphology;
 private slots:
     void on_alpha_blending_clicked();
     void on_paint_clicked();
@@ -38,5 +42,7 @@ private slots:
     void on_texturing_clicked();
     void on_morphing_clicked();
     void on_transformation3d_clicked();
+    void on_scanline_clicked();
+    void on_morphology_clicked();
 };
 

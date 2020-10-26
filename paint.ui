@@ -35,7 +35,7 @@
      <x>530</x>
      <y>10</y>
      <width>261</width>
-     <height>251</height>
+     <height>401</height>
     </rect>
    </property>
    <property name="title">
@@ -52,6 +52,9 @@
     </property>
     <property name="text">
      <string>Line</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="clear">
@@ -93,6 +96,77 @@
      <string>Undo</string>
     </property>
    </widget>
+   <widget class="QRadioButton" name="flood_fill">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>120</y>
+      <width>82</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Flood fill</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lmb_color">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>LMB Color</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="rmb_color">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>200</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RMB Color</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="bg_color">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>240</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QFrame" name="fg_color">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>240</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
   </widget>
  </widget>
  <resources/>

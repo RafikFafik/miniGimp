@@ -32,8 +32,6 @@ private slots:
 
     void on_fov_valueChanged(int value);
 
-    void on_checkBox_clicked();
-
     void on_volume_valueChanged(int value);
 
     void on_scaleX_valueChanged(int value);
@@ -47,6 +45,14 @@ private slots:
     void on_rotateY_valueChanged(int value);
 
     void on_rotateZ_valueChanged(int value);
+
+    void on_reset_clicked();
+
+    void on_wireframe_clicked();
+
+    void on_flip_normal_clicked();
+
+    void on_draw_points_clicked();
 
 private:
     Ui::Transformation3D *ui;

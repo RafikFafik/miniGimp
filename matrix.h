@@ -27,8 +27,8 @@ public:
     void translate3D(Point3D *vector);
     void scale(double sX, double sY, int width, int height);
     void scale3D(double sX, double sY, double sZ);
-    void rotateX(double angle);
-    void rotateY(double angle);
+    void rotateX(double angle, int *center);
+    void rotateY(double angle, int *center);
     void rotateZ(double angle, int *center);
     void sheareX(double a, int distance);
     void sheareY(double a, int distance);

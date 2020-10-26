@@ -3,9 +3,23 @@
 
 struct Point{
     int x, y;
+    Point(int x, int y) {
+        this->x = x;
+        this->y = y;
+    }
+    Point(){}
+    bool operator== (const Point &a) {
+        return (this->x == a.x && this->y == a.y);
+    }
+    bool operator!= (const Point &a) {
+        return (this->x != a.x || this->y != a.y);
+    }
 };
 struct Point3D {
     int x, y, z;
+};
+struct Rect {
+    Point3D A, B, C, D;
 };
 
 #endif // POINT_H

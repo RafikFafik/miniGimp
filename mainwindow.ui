@@ -108,6 +108,32 @@
      <string>Transformation 3D</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="scanline">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>0</y>
+      <width>120</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ScanLine</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="morphology">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>0</y>
+      <width>120</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Morphology</string>
+    </property>
+   </widget>
   </widget>
   <action name="actionexit">
    <property name="text">

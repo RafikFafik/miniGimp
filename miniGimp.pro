@@ -24,9 +24,11 @@ SOURCES += \
     mainwindow.cpp \
     matrix.cpp \
     morphing.cpp \
+    morphology.cpp \
     paint.cpp \
     pixel.cpp \
     point.cpp \
+    scanline.cpp \
     texture.cpp \
     transformation2d.cpp \
     transformation3d.cpp
@@ -39,9 +41,11 @@ HEADERS += \
     mainwindow.h \
     matrix.h \
     morphing.h \
+    morphology.h \
     paint.h \
     pixel.h \
     point.h \
+    scanline.h \
     texture.h \
     transformation2d.h \
     transformation3d.h
@@ -50,7 +54,9 @@ FORMS += \
     alphablending.ui \
     mainwindow.ui \
     morphing.ui \
+    morphology.ui \
     paint.ui \
+    scanline.ui \
     texture.ui \
     transformation2d.ui \
     transformation3d.ui

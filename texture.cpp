@@ -34,11 +34,15 @@ void Texture::mousePressEvent(QMouseEvent *event)
     if(Pixel::inFrameClicked(point, ui->frame_left)) {
         *img_left = img_left_restore->copy();
         frameAction(img_left, ui->frame_left, points_left, point, color);
+        texture();
+        renderTriangle(img_right, ui->frame_right, points_right, color, -1);
     }
     if(Pixel::inFrameClicked(point, ui->frame_right)) {
         frameAction(img_right, ui->frame_right, points_right, point, color);
+        texture();
+        renderTriangle(img_right, ui->frame_right, points_right, color, -1);
     }
-    texture();
+
     update();
 }
 void Texture::mouseMoveEvent(QMouseEvent *event)
@@ -49,12 +53,16 @@ void Texture::mouseMoveEvent(QMouseEvent *event)
     if(Pixel::inFrameClicked(point, ui->frame_left)) {
         *img_left = img_left_restore->copy();
         frameAction(img_left, ui->frame_left, points_left, point, color);
+        texture();
+        renderTriangle(img_right, ui->frame_right, points_right, color, -1);
     }
     if(Pixel::inFrameClicked(point, ui->frame_right)) {
         Pixel::clear(img_right);
         frameAction(img_right, ui->frame_right, points_right, point, color);
+        texture();
+        renderTriangle(img_right, ui->frame_right, points_right, color, -1);
     }
-    texture();
+
     update();
 }
 void Texture::mouseReleaseEvent(QMouseEvent *event)
@@ -96,10 +104,10 @@ void Texture::renderTriangle(QImage *img, QFrame *frame, std::vector<Point> &poi
     Color *green = new Color(0, 255, 0);
     if(points.size() > 1) {
         for(unsigned int i = 0; i < points.size() - 1; i++) {
-            Geometry::line(img, &points.at(i), &points.at(i + 1), green);
+            Geometry::lineRightFrame(img, &points.at(i), &points.at(i + 1), green);
         }
         if(points.size() > 2)
-            Geometry::line(img, &points.at(0), &points.at(2), green);
+            Geometry::lineRightFrame(img, &points.at(0), &points.at(2), green);
     }
     delete green;
     Point *p = new Point;
@@ -116,7 +124,7 @@ void Texture::renderTriangle(QImage *img, QFrame *frame, std::vector<Point> &poi
             color->green = 255;
         }
 
-        Pixel::drawPoint(img->bits(), p, frame->width(), color);
+        frame->x() == 0 ? Pixel::drawPoint(img->bits(), p, frame->width(), color) : Pixel::drawPointRightFrame(img->bits(), p, frame->width(), color);
     }
     delete p;
 

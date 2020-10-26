@@ -9,10 +9,16 @@ struct Color {
         green = 0;
         blue = 0;
     }
-    Color(unsigned char _red, unsigned char _green, unsigned char _blue){
-        red = _red;
-        green = _green;
-        blue = _blue;
+    Color(unsigned char red, unsigned char green, unsigned char blue){
+        this->red = red;
+        this->green = green;
+        this->blue = blue;
+    }
+    bool operator== (const Color &a) {
+        return (this->red == a.red && this->green == a.green && this->blue == a.blue);
+    }
+    bool operator!= (const Color &a) {
+        return (this->red != a.red || this->green != a.green || this->blue != a.blue);
     }
 };
 

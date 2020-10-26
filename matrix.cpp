@@ -94,22 +94,25 @@ void Matrix::rotateZ(double angle, int *center) {
     rotationMatrixZ[1][size - 1] = center[Y];
     rotationMatrixZ[2][size - 1] = center[Z];
 }
-void Matrix::rotateX(double angle) {
-    rotationMatrixX[1][1] = cos(angle);
-    rotationMatrixX[1][2] = -sin(angle);
-//    rotationMatrixX[0][size - 1] = (width / (double)2)*(1-cos(angle))+(height/(double)2)*(sin(angle));
-    rotationMatrixX[2][1] = sin(angle);
-    rotationMatrixX[2][2] = cos(angle);
-//    rotationMatrixX[1][size - 1] = (height/(double)2)*(1-cos(angle))-(width/(double)2)*(sin(angle));
-}
-void Matrix::rotateY(double angle) {
+void Matrix::rotateY(double angle, int *center) {
     rotationMatrixY[0][0] = cos(angle);
     rotationMatrixY[2][0] = -sin(angle);
-//    rotationMatrixY[0][size - 1] = (width / (double)2)*(1-cos(angle))+(height/(double)2)*(sin(angle));
     rotationMatrixY[0][2] = sin(angle);
     rotationMatrixY[2][2] = cos(angle);
-//    rotationMatrixY[1][size - 1] = (height/(double)2)*(1-cos(angle))-(width/(double)2)*(sin(angle));
+    rotationMatrixY[0][size - 1] = center[X];
+    rotationMatrixY[1][size - 1] = center[Y];
+    rotationMatrixY[2][size - 1] = center[Z];
 }
+void Matrix::rotateX(double angle, int *center) {
+    rotationMatrixX[1][1] = cos(angle);
+    rotationMatrixX[1][2] = -sin(angle);
+    rotationMatrixX[2][1] = sin(angle);
+    rotationMatrixX[2][2] = cos(angle);
+    rotationMatrixX[0][size - 1] = center[X];
+    rotationMatrixX[1][size - 1] = center[Y];
+    rotationMatrixX[2][size - 1] = center[Z];
+}
+
 void Matrix::sheareX(double a,int distance) {
     sheareMatrix[0][1] = a;
     sheareMatrix[0][2] = ((1 - a) *  (distance / (double)2)) - distance / 2;
@@ -135,10 +138,17 @@ void Matrix::clear(double **matrix) {
 }
 void Matrix::combine() {
     clear(transformationMatrix);
+    // for 3D transformation translation first
+    if(size == 4) {
+        multiplyMatrix(translationMatrix);
+        multiplyMatrix(rotationMatrixX);
+        multiplyMatrix(rotationMatrixY);
+    }
     multiplyMatrix(rotationMatrixZ);
     multiplyMatrix(scaleMatrix);
     multiplyMatrix(sheareMatrix);
-    multiplyMatrix(translationMatrix);
+    if(size == 3) // for 2D transformation translation last
+        multiplyMatrix(translationMatrix);
 //    debug(transformationMatrix);
 //    debug(translationMatrix);
 }

@@ -14,11 +14,15 @@ MainWindow::MainWindow(QWidget *parent)
     texture = new Texture(ui->container);
     morphing = new Morphing(ui->container);
     transformation3D = new Transformation3D(ui->container);
+    scanLine = new ScanLine(ui->container);
+    morphology = new Morphology(ui->container);
     paint->hide();
     alphaBlending->hide();
     transformation2D->hide();
     texture->hide();
     morphing->hide();
+    transformation3D->hide();
+    scanLine->hide();
 }
 
 MainWindow::~MainWindow()
@@ -33,6 +37,8 @@ void MainWindow::on_alpha_blending_clicked()
     texture->hide();
     morphing->hide();
     transformation3D->hide();
+    scanLine->hide();
+    morphology->hide();
 }
 
 void MainWindow::on_paint_clicked()
@@ -43,6 +49,8 @@ void MainWindow::on_paint_clicked()
     texture->hide();
     morphing->hide();
     transformation3D->hide();
+    scanLine->hide();
+    morphology->hide();
 }
 
 void MainWindow::on_transformation2d_clicked()
@@ -53,6 +61,8 @@ void MainWindow::on_transformation2d_clicked()
     texture->hide();
     morphing->hide();
     transformation3D->hide();
+    scanLine->hide();
+    morphology->hide();
 }
 
 void MainWindow::on_texturing_clicked()
@@ -63,6 +73,8 @@ void MainWindow::on_texturing_clicked()
     texture->show();
     morphing->hide();
     transformation3D->hide();
+    scanLine->hide();
+    morphology->hide();
 }
 void MainWindow::on_morphing_clicked()
 {
@@ -72,6 +84,8 @@ void MainWindow::on_morphing_clicked()
     texture->hide();
     morphing->show();
     transformation3D->hide();
+    scanLine->hide();
+    morphology->hide();
 }
 
 void MainWindow::on_transformation3d_clicked()
@@ -82,4 +96,30 @@ void MainWindow::on_transformation3d_clicked()
     texture->hide();
     morphing->hide();
     transformation3D->show();
+    scanLine->hide();
+    morphology->hide();
+}
+
+void MainWindow::on_scanline_clicked()
+{
+    transformation2D->hide();
+    alphaBlending->hide();
+    paint->hide();
+    texture->hide();
+    morphing->hide();
+    transformation3D->hide();
+    scanLine->show();
+    morphology->hide();
+}
+
+void MainWindow::on_morphology_clicked()
+{
+    transformation2D->hide();
+    alphaBlending->hide();
+    paint->hide();
+    texture->hide();
+    morphing->hide();
+    transformation3D->hide();
+    scanLine->hide();
+    morphology->show();
 }
