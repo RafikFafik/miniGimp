@@ -14,6 +14,14 @@ struct Point{
     bool operator!= (const Point &a) {
         return (this->x != a.x || this->y != a.y);
     }
+    void operator* (const double &a) {
+            this->x *= a;
+            this->y *= a;
+    }
+    void operator+ (const double &a) {
+            this->x += a;
+            this->y += a;
+    }
 };
 struct Point3D {
     int x, y, z;

@@ -19,6 +19,7 @@ SOURCES += \
     alphablending.cpp \
     color.cpp \
     cube.cpp \
+    curve.cpp \
     geometry.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     alphablending.h \
     color.h \
     cube.h \
+    curve.h \
     geometry.h \
     mainwindow.h \
     matrix.h \
@@ -52,6 +54,7 @@ HEADERS += \
 
 FORMS += \
     alphablending.ui \
+    curve.ui \
     mainwindow.ui \
     morphing.ui \
     morphology.ui \

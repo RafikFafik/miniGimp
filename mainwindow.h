@@ -12,6 +12,7 @@
 #include "transformation3d.h"
 #include "scanline.h"
 #include "morphology.h"
+#include "curve.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,6 +36,7 @@ private:
     Transformation3D *transformation3D;
     ScanLine *scanLine;
     Morphology *morphology;
+    Curve *curve;
 private slots:
     void on_alpha_blending_clicked();
     void on_paint_clicked();
@@ -44,5 +46,6 @@ private slots:
     void on_transformation3d_clicked();
     void on_scanline_clicked();
     void on_morphology_clicked();
+    void on_curve_clicked();
 };
 

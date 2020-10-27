@@ -134,6 +134,19 @@
      <string>Morphology</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="curve">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>0</y>
+      <width>120</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Curve</string>
+    </property>
+   </widget>
   </widget>
   <action name="actionexit">
    <property name="text">
