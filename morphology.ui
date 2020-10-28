@@ -106,7 +106,7 @@
      <string>Restore</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="mask_type">
+   <widget class="QGroupBox" name="kernel_type">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -116,7 +116,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Mask type</string>
+     <string>Kernel type</string>
     </property>
     <widget class="QRadioButton" name="cross">
      <property name="geometry">

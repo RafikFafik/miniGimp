@@ -21,12 +21,17 @@ public:
 private:
     Ui::Morphology *ui;
     QImage *img, *img_restore, *tmp;
-    bool cross_mask = true;
-    bool square_mask = false;
+    bool cross_kernel = true;
+    bool square_kernel = false;
     void draw(int black_or_white);
     bool checkMask(bool cross_mask, int x, int y, int searched_color);
     bool checkPixel(int x, int y, int searched_color);
     int width, height;
+
+    void dilation();
+    void erosion();
+    bool matchesCrossKernel(QImage *img, Point *pixel_pos, Color *color_to_check);
+    bool matchesSquareKernel(QImage *img, Point *pixel_pos, Color *color_to_check);
 private slots:
     void paintEvent(QPaintEvent*);
     void on_closing_clicked();

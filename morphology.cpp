@@ -6,9 +6,9 @@ Morphology::Morphology(QWidget *parent) :
     ui(new Ui::Morphology)
 {
     ui->setupUi(this);
-    img = new QImage(":/pictures/ursus.jpg");
     img_restore = new QImage(":/pictures/ursus.jpg");
-    tmp = new QImage(ui->frame->width(), ui->frame->height(), QImage::Format_RGB32);
+    img = new QImage(":/pictures/ursus.jpg");
+    tmp = new QImage(":/pictures/ursus.jpg");
     Pixel::monochromatic(img);
     width = ui->frame->width();
     height = ui->frame->height();
@@ -75,7 +75,7 @@ void Morphology::draw(int searched_color) {
     for(i=0; i<height; i++) {
         for(j=0; j<width; j++) {
             if(org[width*4*i + 4*j] == current_point   && org[width*4*i + 4*j + 1] == current_point && org[width*4*i + 4*j + 2] == current_point) {
-                if(checkMask(cross_mask, i, j, searched_color)) {
+                if(checkMask(cross_kernel, i, j, searched_color)) {
                     ptr[width*4*i + 4*j] = searched_color;
                     ptr[width*4*i + 4*j + 1] = searched_color;
                     ptr[width*4*i + 4*j + 2] = searched_color;
@@ -87,22 +87,118 @@ void Morphology::draw(int searched_color) {
     *img = tmp->copy();
     update();
 }
+void Morphology::dilation() {
+    Point *pixel_pos = new Point;
+    Color *color_to_check = new Color(0, 0, 0);
+    *tmp = img->copy();
+    for(int i = 0; i < ui->frame->height(); i++) {
+        for(int j = 0; j < ui->frame->width(); j++) {
+            pixel_pos->setXY(j, i);
+            if(cross_kernel) {
+                if(matchesCrossKernel(img, pixel_pos, color_to_check))
+                    Pixel::setPixelColor(tmp, pixel_pos, color_to_check);
+            } else {
+                if(matchesSquareKernel(img, pixel_pos, color_to_check))
+                    Pixel::setPixelColor(tmp, pixel_pos, color_to_check);
+            }
+
+        }
+    }
+    *img = tmp->copy();
+    delete color_to_check;
+    delete pixel_pos;
+}
+void Morphology::erosion() {
+    Point *pixel_pos = new Point;
+    Color *color_to_check = new Color(255, 255, 255);
+    *tmp = img->copy();
+    for(int i = 0; i < ui->frame->height(); i++) {
+        for(int j = 0; j < ui->frame->width(); j++) {
+            pixel_pos->setXY(j, i);
+            if(cross_kernel) {
+                if(matchesCrossKernel(img, pixel_pos, color_to_check))
+                    Pixel::setPixelColor(tmp, pixel_pos, color_to_check);
+            } else {
+                if(matchesSquareKernel(img, pixel_pos, color_to_check))
+                    Pixel::setPixelColor(tmp, pixel_pos, color_to_check);
+            }
+
+        }
+    }
+    *img = tmp->copy();
+    delete color_to_check;
+    delete pixel_pos;
+}
+bool Morphology::matchesCrossKernel(QImage *image, Point *point, Color *color_to_check) {
+    unsigned char *img_pointer = image->bits();
+    int img_width = img->width();
+    int img_height = img->height();
+    Point left, right, top, bottom;
+    left = right = top = bottom = *point;
+    left.x -= 1;
+    right.x += 1;
+    top.y -= 1;
+    bottom.y += 1;
+    if((!Pixel::outOfImage(&left, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, left).red == color_to_check->red )|| // red == green == blue == 0 || red == green == blue == 1
+       (!Pixel::outOfImage(&right, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, right).red == color_to_check->red) ||
+       (!Pixel::outOfImage(&top, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, top).red == color_to_check->red) ||
+       (!Pixel::outOfImage(&bottom, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, bottom).red == color_to_check->red)
+      )
+        return true;
+
+    return false;
+}
+bool Morphology::matchesSquareKernel(QImage *image, Point *point, Color *color_to_check) {
+    unsigned char *img_pointer = image->bits();
+    int img_width = img->width();
+    int img_height = img->height();
+    Point left, right, top, bottom, left_top, right_top, left_bottom, right_bottom;
+    left = right = top = bottom = left_top = right_top = left_bottom = right_bottom = *point;
+    left.x -= 1;
+    right.x += 1;
+    top.y -= 1;
+    bottom.y += 1;
+    left_top.x -= 1;
+    left_top.y -= 1;
+    right_top.x += 1;
+    right_top.y -= 1;
+    left_bottom.x -= 1;
+    left_bottom.y += 1;
+    right_bottom.x += 1;
+    right_bottom.y += 1;
+    if((!Pixel::outOfImage(&left, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, left).red == color_to_check->red) ||
+       (!Pixel::outOfImage(&right, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, right).red == color_to_check->red) ||
+       (!Pixel::outOfImage(&top, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, top).red == color_to_check->red) ||
+       (!Pixel::outOfImage(&bottom, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, bottom).red == color_to_check->red) ||
+       (!Pixel::outOfImage(&left_top, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, left_top).red == color_to_check->red) ||
+       (!Pixel::outOfImage(&right_top, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, right_top).red == color_to_check->red) ||
+       (!Pixel::outOfImage(&left_bottom, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, left_bottom).red == color_to_check->red) ||
+       (!Pixel::outOfImage(&right_bottom, img_width, img_height) && Pixel::getPixelColor(img_pointer, img_width, right_bottom).red == color_to_check->red)
+      )
+        return true;
+
+    return false;
+}
 void Morphology::on_closing_clicked() {
-    on_dilation_clicked();
-    on_erosion_clicked();
+    dilation();
+    erosion();
+    update();
 }
 
 void Morphology::on_dilation_clicked() {
-    draw(0);
+    dilation();
+    update();
 }
 
 void Morphology::on_erosion_clicked() {
-    draw(255);
+    erosion();
+    update();
 }
 
 void Morphology::on_opening_clicked() {
-    on_erosion_clicked();
-    on_dilation_clicked();
+    erosion();
+    dilation();
+    update();
 }
 
 void Morphology::on_restore_clicked()
@@ -114,19 +210,20 @@ void Morphology::on_restore_clicked()
 
 void Morphology::on_cross_clicked()
 {
-    cross_mask = true;
+    cross_kernel = true;
+    square_kernel = false;
 }
 
-void Morphology::on_square_clicked()
-{
-    cross_mask = false;
+void Morphology::on_square_clicked() {
+    square_kernel = true;
+    cross_kernel = false;
 }
-void Morphology::on_loadImage_clicked()
-{
+void Morphology::on_loadImage_clicked() {
     QString file = QFileDialog::getOpenFileName(this, tr("Choose"), "", tr("Images (*.jpg *.png *.jpeg *.bmp *.gif)"));
         if(QString::compare(file,QString()) != 0){
-            img = new QImage(file);
+            delete img_restore;
             img_restore = new QImage(file);
+            *img = img_restore->copy();
             Pixel::monochromatic(img);
         }
 }
