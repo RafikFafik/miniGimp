@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     morphology = new Morphology(ui->container);
     curve = new Curve(ui->container);
     colorSpace = new ColorSpace(ui->container);
-    paint->hide();
+//    paint->hide();
     alphaBlending->hide();
     transformation2D->hide();
     texture->hide();
@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     scanLine->hide();
     morphology->hide();
     curve->hide();
+    colorSpace->hide();
 }
 
 MainWindow::~MainWindow()

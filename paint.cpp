@@ -73,6 +73,10 @@ void Paint::mouseMoveEvent(QMouseEvent *event) {
         Pixel::setPixelColor(img, move, active_color);
     else if(mode == LINE)
         Geometry::line(img, press, move, active_color);
+    else if(mode == CIRCLE)
+        Geometry::circle(img, press, move, active_color);
+    else if(mode == ELIPSE)
+        Geometry::elipse(img, press, move, active_color, verticles_count);
     update();
 }
 void Paint::mouseReleaseEvent(QMouseEvent*)
@@ -123,16 +127,29 @@ void Paint::on_undo_clicked()
     imgs.pop_back();
     update();
 }
-void Paint::on_flood_fill_clicked()
-{
+void Paint::on_flood_fill_clicked() {
     mode = FLOOD_FILL;
+    ui->verticles->hide();
 }
-void Paint::on_pen_clicked()
-{
+void Paint::on_pen_clicked() {
     mode = PEN;
+    ui->verticles->hide();
 }
 
-void Paint::on_line_clicked()
-{
+void Paint::on_line_clicked() {
     mode = LINE;
+    ui->verticles->hide();
+}
+
+void Paint::on_circle_clicked() {
+    mode = CIRCLE;
+    ui->verticles->hide();
+}
+
+void Paint::on_elipse_clicked() {
+    mode = ELIPSE;
+    ui->verticles->show();
+}
+void Paint::on_verticles_valueChanged(int value) {
+    verticles_count = value;
 }

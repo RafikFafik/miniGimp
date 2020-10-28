@@ -18,6 +18,8 @@
 #define PEN 0
 #define LINE 1
 #define FLOOD_FILL 2
+#define CIRCLE 3
+#define ELIPSE 4
 
 namespace Ui {
 class Paint;
@@ -42,6 +44,7 @@ private:
     unsigned int mode = 1;
     void floodFill(Point *point, Color *color);
     void drawLine(Color *color);
+    int verticles_count = 20;
 private slots:
     void paintEvent(QPaintEvent*);
     void mousePressEvent(QMouseEvent *event);
@@ -52,4 +55,7 @@ private slots:
     void on_line_clicked();
     void on_undo_clicked();
     void on_flood_fill_clicked();
+    void on_circle_clicked();
+    void on_elipse_clicked();
+    void on_verticles_valueChanged(int value);
 };

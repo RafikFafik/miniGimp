@@ -45,7 +45,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>90</y>
+      <y>60</y>
       <width>82</width>
       <height>17</height>
      </rect>
@@ -74,7 +74,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>60</y>
+      <y>30</y>
       <width>82</width>
       <height>17</height>
      </rect>
@@ -100,7 +100,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>120</y>
+      <y>90</y>
       <width>82</width>
       <height>17</height>
      </rect>
@@ -133,6 +133,54 @@
     </property>
     <property name="text">
      <string>RMB Color</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="circle">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>120</y>
+      <width>82</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Circle</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="elipse">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>150</y>
+      <width>82</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Elipse</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="verticles">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>150</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>5</number>
+    </property>
+    <property name="maximum">
+     <number>55</number>
+    </property>
+    <property name="value">
+     <number>30</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>

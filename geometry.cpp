@@ -92,3 +92,48 @@ void Geometry::lineRightFrame(QImage *img, Point *start, Point *end, Color *colo
     }
 
 }
+
+void Geometry::circle(QImage *img, Point *center, Point *edge, Color *color) {
+    double radius_square = (edge->x - center->x) * (edge->x - center->x) + (edge->y - center->y) * (edge->y - center->y);
+    double y;
+    Point *p = new Point;
+    for(int x = 0; x <= sqrt(radius_square) / sqrt(2); x++) {
+        y = sqrt(radius_square - x * x);
+        p->setXY(x + center->x, y + center->y);
+        Pixel::setPixelColor(img, p, color); // (x, y)
+        p->y = -y + center->y;
+        Pixel::setPixelColor(img, p, color); // (x, -y)
+        p->x = -x + center->x;
+        Pixel::setPixelColor(img, p, color); // (-x, -y)
+        p->y = y + center->y;
+        Pixel::setPixelColor(img, p, color); // (-x, y)
+
+        p->setXY(y + center->x, x + center->y);
+        Pixel::setPixelColor(img, p, color); // (y, x)
+        p->setXY(y + center->x, -x + center->y);
+        Pixel::setPixelColor(img, p, color); // (x, -y)
+        p->setXY(-y + center->x, -x + center->y);
+        Pixel::setPixelColor(img, p, color); // (-x, -y)
+        p->setXY(-y + center->x, x + center->y);
+        Pixel::setPixelColor(img, p, color); // (-x, y)
+    }
+
+    delete p;
+}
+void Geometry::elipse(QImage *img, Point *center, Point *edge, Color *color, int verticles) {
+    Point *start = new Point;
+    Point *end = new Point;
+    double step = 2 * M_PI / verticles;
+    int a = abs(center->x - edge->x);
+    int b = abs(center->y - edge->y);
+    for(double i = 0; i < 2 * M_PI; i += step) {
+        start->x = a * cos(i) + center->x;
+        start->y = b * sin(i) + center->y;
+        end->x = a * cos(i + step) + center->x;
+        end->y = b * sin(i + step) + center->y;
+        line(img, start, end, color);
+    }
+    delete start;
+    delete end;
+}
+
