@@ -13,6 +13,7 @@
 #include "scanline.h"
 #include "morphology.h"
 #include "curve.h"
+#include "colorspace.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,6 +38,7 @@ private:
     ScanLine *scanLine;
     Morphology *morphology;
     Curve *curve;
+    ColorSpace *colorSpace;
 private slots:
     void on_alpha_blending_clicked();
     void on_paint_clicked();
@@ -47,5 +49,6 @@ private slots:
     void on_scanline_clicked();
     void on_morphology_clicked();
     void on_curve_clicked();
+    void on_color_space_clicked();
 };
 

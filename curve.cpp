@@ -154,12 +154,12 @@ void Curve::on_bezier_clicked() {
     bezier_checked = !bezier_checked;
     b_spline_checked = !b_spline_checked;
     Pixel::clear(img);
+    bezier_checked ? bezier(img, CVs) : bSpline(img, CVs);
     if(show_cv) {
         Color *color = new Color (0, 255, 0);
         Pixel::drawPoints(img, CVs, color);
         delete color;
     }
-    bezier_checked ? bezier(img, CVs) : bSpline(img, CVs);
     update();
 }
 
@@ -168,12 +168,12 @@ void Curve::on_b_spline_clicked() {
     b_spline_checked = !b_spline_checked;
     bezier_checked = !bezier_checked;
     Pixel::clear(img);
+    bezier_checked ? bezier(img, CVs) : bSpline(img, CVs);
     if(show_cv) {
         Color *color = new Color (0, 255, 0);
         Pixel::drawPoints(img, CVs, color);
         delete color;
-    }
-    bezier_checked ? bezier(img, CVs) : bSpline(img, CVs);
+    }   
     update();
 }
 
@@ -193,12 +193,12 @@ void Curve::on_show_cv_clicked() {
 void Curve::on_accuracy_valueChanged(int value) {
     segments_count = value;
     Pixel::clear(img);
+    bezier_checked ? bezier(img, CVs) : bSpline(img, CVs);
     if(show_cv) {
         Color *color = new Color (0, 255, 0);
         Pixel::drawPoints(img, CVs, color);
         delete color;
     }
-    bezier_checked ? bezier(img, CVs) : bSpline(img, CVs);
     update();
 }
 
@@ -206,11 +206,11 @@ void Curve::on_b_spline_extend_clicked()
 {
     b_spline_extend = !b_spline_extend;
     Pixel::clear(img);
+    bSpline(img, CVs);
     if(show_cv) {
         Color *color = new Color (0, 255, 0);
         Pixel::drawPoints(img, CVs, color);
         delete color;
     }
-    bSpline(img, CVs);
     update();
 }

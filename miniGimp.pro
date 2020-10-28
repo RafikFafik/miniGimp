@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     alphablending.cpp \
     color.cpp \
+    colorspace.cpp \
     cube.cpp \
     curve.cpp \
     geometry.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
 HEADERS += \
     alphablending.h \
     color.h \
+    colorspace.h \
     cube.h \
     curve.h \
     geometry.h \
@@ -54,6 +56,7 @@ HEADERS += \
 
 FORMS += \
     alphablending.ui \
+    colorspace.ui \
     curve.ui \
     mainwindow.ui \
     morphing.ui \

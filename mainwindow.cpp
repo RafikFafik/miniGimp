@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    resize(QDesktopWidget().availableGeometry(this).size() * 0.6);
+    resize(QDesktopWidget().availableGeometry(this).size() * 0.65);
     paint = new Paint(ui->container);
     alphaBlending = new AlphaBlending(ui->container);
     transformation2D = new Transformation2D(ui->container);
@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     scanLine = new ScanLine(ui->container);
     morphology = new Morphology(ui->container);
     curve = new Curve(ui->container);
+    colorSpace = new ColorSpace(ui->container);
     paint->hide();
     alphaBlending->hide();
     transformation2D->hide();
@@ -25,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     transformation3D->hide();
     scanLine->hide();
     morphology->hide();
+    curve->hide();
 }
 
 MainWindow::~MainWindow()
@@ -42,6 +44,7 @@ void MainWindow::on_alpha_blending_clicked()
     scanLine->hide();
     morphology->hide();
     curve->hide();
+    colorSpace->hide();
 }
 
 void MainWindow::on_paint_clicked()
@@ -55,6 +58,7 @@ void MainWindow::on_paint_clicked()
     scanLine->hide();
     morphology->hide();
     curve->hide();
+    colorSpace->hide();
 }
 
 void MainWindow::on_transformation2d_clicked()
@@ -68,6 +72,7 @@ void MainWindow::on_transformation2d_clicked()
     scanLine->hide();
     morphology->hide();
     curve->hide();
+    colorSpace->hide();
 }
 
 void MainWindow::on_texturing_clicked()
@@ -81,6 +86,7 @@ void MainWindow::on_texturing_clicked()
     scanLine->hide();
     morphology->hide();
     curve->hide();
+    colorSpace->hide();
 }
 void MainWindow::on_morphing_clicked()
 {
@@ -93,6 +99,7 @@ void MainWindow::on_morphing_clicked()
     scanLine->hide();
     morphology->hide();
     curve->hide();
+    colorSpace->hide();
 }
 
 void MainWindow::on_transformation3d_clicked()
@@ -106,6 +113,7 @@ void MainWindow::on_transformation3d_clicked()
     scanLine->hide();
     morphology->hide();
     curve->hide();
+    colorSpace->hide();
 }
 
 void MainWindow::on_scanline_clicked()
@@ -119,6 +127,7 @@ void MainWindow::on_scanline_clicked()
     scanLine->show();
     morphology->hide();
     curve->hide();
+    colorSpace->hide();
 }
 
 void MainWindow::on_morphology_clicked()
@@ -132,6 +141,7 @@ void MainWindow::on_morphology_clicked()
     scanLine->hide();
     morphology->show();
     curve->hide();
+    colorSpace->hide();
 }
 
 void MainWindow::on_curve_clicked()
@@ -145,4 +155,19 @@ void MainWindow::on_curve_clicked()
     scanLine->hide();
     morphology->hide();
     curve->show();
+    colorSpace->hide();
+}
+
+void MainWindow::on_color_space_clicked()
+{
+    transformation2D->hide();
+    alphaBlending->hide();
+    paint->hide();
+    texture->hide();
+    morphing->hide();
+    transformation3D->hide();
+    scanLine->hide();
+    morphology->hide();
+    curve->hide();
+    colorSpace->show();
 }
